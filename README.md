@@ -124,6 +124,25 @@ npm run tauri build
 
 Requires: Rust (stable), Node.js 18+, macOS 13+ or Windows 10+.
 
+### Linux dev note
+
+Linux support is still a bit less "it just works" than the macOS/Windows path — naturally, because desktop Linux enjoys making simple things ceremonial.
+
+If `tauri dev` fails on Debian/Ubuntu/Kali, install the common system packages first:
+
+```bash
+sudo apt update
+sudo apt install -y libssl-dev librsvg2-dev libwebkit2gtk-4.1-dev
+```
+
+Then run:
+
+```bash
+npm exec tauri dev
+```
+
+If you hit a Tauri capability error for plugins such as `updater:*` or `process:*`, make sure the corresponding plugin permissions are not declared unless the plugin is actually added in Rust and JS. On Linux dev runs, removing invalid capability entries from `src-tauri/capabilities/default.json` may be required.
+
 ---
 
 ## Star History
